@@ -46,9 +46,9 @@ This interactive forecasting app predicts daily item sales across stores for **C
 
 ## 🧠 How It Works
 
-- ** Input:** Historical unit sales, promotions, dates, oil prices, and holidays
-- ** Model:** A trained XGBoost regressor using engineered time series features
-- ** Output:** Forecasted sales for the selected item/store and timeframe
+- **Input:** Historical unit sales, promotions, dates, oil prices, and holidays
+- **Model:** A trained XGBoost regressor using engineered time series features
+- **Output:** Forecasted sales for the selected item/store and timeframe
 
 No setup needed. Just go to the link and click:
 
