@@ -34,6 +34,7 @@ def preprocess_input(store_id, item_id, date, df_train, df_oil, df_holidays):
     history = df_train[(df_train.store_nbr == store_id) & (df_train.item_nbr == item_id)]
     history = history[history.date < date].sort_values("date")
 
+    # Error if not enough purchase history
     if len(history) < 7:
         st.warning(f"⚠️ Not enough history for store {store_id}, item {item_id} on {date.date()}. Found only {len(history)} records.")
 
@@ -92,7 +93,8 @@ def preprocess_input(store_id, item_id, date, df_train, df_oil, df_holidays):
 
 # --- Streamlit App ---
 def main():
-    st.title("🛒 Grocery Sales Forecast - Corporación Favorita")
+    st.title("Grocery Sales Forecast - Corporación Favorita")
+    
     download_files()
 
     df_train = pd.read_csv(DRIVE_FILES["train"][1], parse_dates=["date"])
@@ -102,7 +104,7 @@ def main():
     with open(DRIVE_FILES["model"][1], "rb") as f:
         model = pickle.load(f)
 
-    st.sidebar.header("📊 Forecast Settings")
+    st.sidebar.header("Forecast Settings")
 
     use_top_10 = st.sidebar.checkbox("Use Top 10 Best Forecasting Candidates", value=True) # Top 10 Checkbox
 
@@ -118,8 +120,8 @@ def main():
         store_items = df_train[df_train.store_nbr == selected_store].item_nbr.unique()
         selected_item = st.sidebar.selectbox("Select Item", sorted(store_items))
 
-    start_date = st.sidebar.date_input("Forecast Start Date", datetime(2014, 3, 1))
-    days = st.sidebar.selectbox("Forecast Horizon", [7, 14, 30])
+    start_date = st.sidebar.date_input("Forecast Start Date", datetime(2014, 1, 1))
+    days = st.sidebar.selectbox("Forecast Horizon (in days)", [7, 14, 30, 90])
 
     if st.button("🔮 Forecast"):
         forecast_dates = pd.date_range(start=start_date, periods=days)
@@ -129,12 +131,21 @@ def main():
         ], ignore_index=True)
 
         preds = model.predict(inputs)
-        forecast_df = pd.DataFrame({"date": forecast_dates, "predicted_sales": preds})
+        forecast_df = pd.DataFrame({
+          "date": forecast_dates,
+          "predicted_sales": preds
+        })
 
-        st.subheader("📈 Forecast Chart")
+        # Format the date to remove the time
+        forecast_df["date"] = forecast_df["date"].dt.date
+
+        st.write(f"Forecasting from {forecast_dates[0].date()} to {forecast_dates[-1].date()}")
+        st.write(f"Store {selected_store} - Item {selected_item}")
+
+        st.subheader("Forecast Chart")
         st.line_chart(forecast_df.set_index("date"))
 
-        st.subheader("📋 Forecast Table")
+        st.subheader("Forecast Table")
         st.dataframe(forecast_df.style.format({"predicted_sales": "{:.2f}"}))
 
 if __name__ == "__main__":
