@@ -7,8 +7,9 @@
 No installation, no configuration — just click and forecast.
 
 <h3>App Preview</h3>
-<img src="https://drive.google.com/uc?id=1njj2PSV7kki5tlzzESMWytj5hQY4vFlZ" width="800"/>
-<img src="https://drive.google.com/uc?id=1sht3XBZl-AZxK7oaJVOMfDR-dVQW2mK8" width="800"/>
+<img src="https://drive.google.com/uc?id=1ckwJ2aK5uG0UXQwkJ-veCpOMIIfUIy9a" width="800"/>
+<img src="https://drive.google.com/uc?id=1PMABH6frdSyf8MC7SIOiFiO1N0QRU1H4" width="800"/>
+<img src="https://drive.google.com/uc?id=1BhJzEiYHMg7f1CquPmIc5IjTiOuyQqF_" width="400"/>
 
 ---
 
@@ -17,7 +18,7 @@ No installation, no configuration — just click and forecast.
 This interactive forecasting app predicts daily item sales across stores for **Corporación Favorita**, a large Ecuadorian grocery chain. Powered by an XGBoost model and feature-rich engineering, it allows users to:
 
 - Explore sales forecasts for any store and item combo  
-- Analyze the next 7, 14, or 30 days  
+- Analyze the next 7 - 90 days  
 - Visualize results with interactive charts and tables  
 - Take advantage of holiday, oil price, and outlier-aware forecasting
 
@@ -28,7 +29,7 @@ This interactive forecasting app predicts daily item sales across stores for **C
 - **Top 10 Best Forecasting Candidates**: Automatically selects store-item pairs with the richest sales history
 - **Manual selection** of any store and item
 - **Dynamic item filtering** based on selected store
-- **Flexible forecasting range**: Choose 7, 14, or 30 days
+- **Flexible forecasting range**: Choose 7, 14, 30, or 90 days
 - 📈 **Line chart** and **data table** output
 -  Fully integrated with Google Drive for model + dataset loading
 
@@ -59,7 +60,7 @@ No setup needed. Just go to the link and click:
 
 ## ⚙️ Features
 
--  Forecasting for 7, 14, or 30 days  
+-  Forecasting for selectable timelines 
 -  Select any store/item or use the top 10 best forecast-ready combos  
 -  Visual output as both a chart and a table  
 -  Powered by lag features, rolling statistics, holidays, and more  
