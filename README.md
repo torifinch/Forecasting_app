@@ -8,6 +8,7 @@ No installation, no configuration — just click and forecast.
 
 <h3>App Preview</h3>
 <img src="https://drive.google.com/uc?id=1njj2PSV7kki5tlzzESMWytj5hQY4vFlZ" width="800"/>
+<img src="https://drive.google.com/uc?id=1sht3XBZl-AZxK7oaJVOMfDR-dVQW2mK8" width="800"/>
 
 ---
 
